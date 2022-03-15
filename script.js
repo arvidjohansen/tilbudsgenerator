@@ -1,11 +1,10 @@
 
 
-console.log("hei");
-
 var formEl = document.getElementById("form");
 var resultEl = document.getElementById("result");
 
-var priser = {
+
+const priser = {
     '50mbit':399,   
     '100mbit':599,
     '300mbit':799,
@@ -108,7 +107,7 @@ function updateResult(){
     
     //Adding kostnader
     var kostnader = getPriceTable(input);
-    resultEl.innerHTML += kostnader + '\n\n';
+    resultEl.innerHTML += kostnader + '\n';
 
     //Adding outro-text
     resultEl.innerHTML += 'Med vennlig hilsen ';
@@ -120,4 +119,11 @@ formEl.addEventListener('submit',function(e){
 });
 formEl.addEventListener('reset',function(e){
     resultEl.innerHTML = '';
+});
+
+var copyBtnEl = document.getElementById("copy");
+copyBtnEl.addEventListener('click',function(e){
+    e.preventDefault();
+    document.querySelector('textarea').select();
+    document.execCommand('copy');
 });

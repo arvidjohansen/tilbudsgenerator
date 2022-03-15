@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilbudsgenerator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tilbudsgenerator</a>
+  </div>
+  
+  
+</nav>
+    <div id="content" class="container-fluid">
+        <h1>Nytt tilbud</h1>
+        <br>
+        <div class="row">
+            <div class="col-md-8">
+                <form id="form">
+                    <div class="row">
+                        <h3>Navn</h3>
+                        <div class="col">
+                            <label  for="navn">Kundenavn</label>
+                            <input  class="form-control" type="text"name="navn" id="navn">
+                        </div>
+                        <div class="col">
+                            <label for="ditt-navn">Ditt navn</label>
+                            <input class="form-control" type="text"name="ditt-navn" id="ditt-navn">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="">
+                                <h3>Internett</h3>
+                                <label for="50mbit" >50mbit</label>
+                                <input type="radio" id="50mbit" name="internett" value="50mbit"><br>
+                                <label for="100mbit">100mbit</label>
+                                <input type="radio" id="100mbit" name="internett" value="100mbit"><br>
+                                <label for="300mbit">300mbit</label>
+                                <input type="radio" id="300mbit" name="internett" value="300mbit"><br>
+                                <label for="500mbit">500mbit</label>
+                                <input type="radio" id="500mbit" name="internett" value="500mbit">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <h3>Ekstrautstyr</h3>
+                        <div class="col">
+                            <label for="ekstra-dekoder">Ekstra dekoder</label>
+                            <input type="checkbox" id="ekstra-dekoder" name="ekstra-dekoder">
+                        </div>
+                        <div class="col">
+                            <label for="wifi-extender">Wifi-extender</label>
+                            <input type="checkbox" id="wifi-extender" name="wifi-extender">
+                        </div>
+                    </div>
+                    <br>
+                    <h3>Rabatter</h3>
+                    <div class="row">
+                        <div class="col">
+                            <label for="rabatt-engangskost">Rabatt engangskost</label>
+                            <input class="form-control" type="number" name="rabatt-engangskost" id="rabatt-engangskost" min="0" max="100">
+                        </div>
+                        <div class="col">
+                            <label for="rabatt-månedlig">Rabatt månedlig</label>
+                            <input class="form-control" type="number" name="rabatt-månedlig" id="rabatt-månedlig" min="0" max="100">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="btn btn-primary" type="submit" value="Lag tilbud">
+                            <input class="btn btn-secondary" type="reset" value="Tilbakestill">
+                            <button class="btn btn-warning" id="copy">Kopier</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col">
+                        <textarea  id="result" rows="17" cols="75"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
