@@ -99,33 +99,25 @@ function getIntroText(input){
     return ret;
 }
 
-/*
-function disableInternettElements(){
-    let elements = formEl.elements['internett'];
-    console.log(elements);
-    for (var i=0;i<=elements.length;i++){
-        elements[i].readOnly = true;
-    }
-}
-*/
-
 function updateResult(){
-    
-    //Prepairing the intro-text
     var input = getFormValues();
-    var introText = getIntroText(input);
     
+    //Adding intro-text
+    var introText = getIntroText(input);
     resultEl.innerHTML = introText;
     
-    //Calculating kostnader
+    //Adding kostnader
     var kostnader = getPriceTable(input);
     resultEl.innerHTML += kostnader + '\n\n';
 
-
+    //Adding outro-text
     resultEl.innerHTML += 'Med vennlig hilsen ';
     resultEl.innerHTML += input['ditt-navn'];
 }
 formEl.addEventListener('submit',function(e){
     e.preventDefault();
     updateResult();
+});
+formEl.addEventListener('reset',function(e){
+    resultEl.innerHTML = '';
 });
