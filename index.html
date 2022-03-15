@@ -1,0 +1,56 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilbudsgenerator</title>
+</head>
+<body>
+    <div id="content">
+        <h1>Tilbudsgenerator</h1>
+
+        <form id="form">
+            <label for="navn">Kundenavn</label>
+            <input type="text"name="navn" id="navn">
+            <br>
+            <label for="ditt-navn">Ditt navn</label>
+            <input type="text"name="ditt-navn" id="ditt-navn">
+            <br>
+            <label for="50mbit">50mbit</label>
+            <input type="radio" id="50mbit" name="internett" value="50mbit">
+            <br>
+            <label for="100mbit">100mbit</label>
+            <input type="radio" id="100mbit" name="internett" value="100mbit">
+            <br>
+            <label for="300mbit">300mbit</label>
+            <input type="radio" id="300mbit" name="internett" value="300mbit">
+            <br>
+            <label for="500mbit">500mbit</label>
+            <input type="radio" id="500bit" name="internett" value="500mbit">
+            <br>
+            <label for="ekstra-dekoder">Ekstra dekoder</label>
+            <input type="checkbox" id="ekstra-dekoder" name="ekstra-dekoder">
+            <br>
+            <label for="wifi-extender">Wifi-extender</label>
+            <input type="checkbox" id="wifi-extender" name="wifi-extender">
+            <br>
+            <label for="rabatt-engangskost">Rabatt engangskost</label>
+            <input type="number" name="rabatt-engangskost" id="rabatt-engangskost" min="0" max="100">
+            <br>
+            <label for="rabatt-månedlig">Rabatt månedlig</label>
+            <input type="number" name="rabatt-månedlig" id="rabatt-månedlig" min="0" max="100">
+            <br>
+            <input type="submit" value="Lag tilbud">
+            <input type="reset" value="Tilbakestill">
+        </form>
+        <textarea id="result" rows="17" cols="75">
+
+        </textarea>
+
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
