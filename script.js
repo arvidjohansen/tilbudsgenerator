@@ -33,8 +33,8 @@ function getPriceTable(input){
     var totalEngangskost = 0;
 
     if (input['internett']){
-        kostnader += 'Internett ' + ret['internett'] + '\tkr ' + priser[ret['internett']] + ',-\tkr 0,-\n'
-        totalMånedlig += priser[ret['internett']];
+        kostnader += 'Internett ' + input['internett'] + '\tkr ' + priser[input['internett']] + ',-\tkr 0,-\n'
+        totalMånedlig += priser[input['internett']];
     }
     if (input['wifi-extender']){
         kostnader += 'Wifi-extender\t\tkr 0,-\t\tkr '+ priser['wifi-extender'] + ',-\n';
@@ -44,43 +44,59 @@ function getPriceTable(input){
         kostnader += 'Ekstra dekoder\t\tkr 0,-\t\tkr '+ priser['ekstra-dekoder'] + ',-\n'; 
         totalEngangskost += priser['ekstra-dekoder'];
     }
+    kostnader += '------------------------------------------------------\n'
+    if (totalEngangskost > 0){
+        kostnader += 'Sum engangskostnader\t\t\tkr ' + totalEngangskost + ',-\n';
+        var rabattEngangskostKr = (totalEngangskost * (input['rabatt-engangskost']/100)).toFixed(2).replace('.',',');
+        kostnader += '   Rabatt (' + input['rabatt-engangskost'] + '%)\t\t\t      - kr ' + rabattEngangskostKr +'\n';
+        var totalEngangskostEtterRabatt = totalEngangskost - parseFloat(rabattEngangskostKr);
+        kostnader += 'Total engangkostnad\t\t\tkr '+ totalEngangskostEtterRabatt + '\n\n';
+    }
+    if (totalMånedlig > 0){
+        kostnader += 'Sum månedlige kostnader\t\kr ' + totalMånedlig + ',-\n';
+        var rabattMånedligKr = (totalMånedlig * (input['rabatt-månedlig']/100)).toFixed(2).replace('.',',');
+        kostnader += '   Rabatt (' + input['rabatt-månedlig'] + '%)\t      - kr ' + rabattMånedligKr +'\n';
+        var totalMånedligEtterRabatt = totalMånedlig - parseFloat(rabattMånedligKr);
+        kostnader += 'Total pris pr måned\tkr '+ totalMånedligEtterRabatt + '\n';
+    }
     return kostnader
 
 }
 
-function updateIntroText(input){
-    resultEl.innerHTML = '';
-    resultEl.innerHTML += 'Hei ' + input['navn'];
-    resultEl.innerHTML += ' og takk for en hyggelig samtale.\n\n';
-    resultEl.innerHTML += 'Sender deg som avtalt tilbud på ';
+function getIntroText(input){
+    ret = '';
+    ret += 'Hei ' + input['navn'];
+    ret += ' og takk for en hyggelig samtale.\n\n';
+    ret += 'Sender deg som avtalt tilbud på ';
     if (input['internett']){
         //internett + ?
-        resultEl.innerHTML += input['internett'] + ' internett';
+        ret += input['internett'] + ' internett';
         
         if (input['ekstra-dekoder'] && input['wifi-extender']){
             //internett, ekstra dekoder og wifi-extender
-            resultEl.innerHTML += ', ekstra TV-dekoder og wifi-extender.\n';
+            ret += ', ekstra TV-dekoder og wifi-extender.\n';
         }else if (input['ekstra-dekoder']){
             //internett og ekstra dekoder
-            resultEl.innerHTML += ' og ekstra TV-dekoder.\n';
+            ret += ' og ekstra TV-dekoder.\n';
         }else if (input['wifi-extender']){
             //internett og wifi-extender
-            resultEl.innerHTML += ' og wifi-extender.\n'
+            ret += ' og wifi-extender.\n'
         }else {
             //bare internett
-            resultEl.innerHTML += '.\n'
+            ret += '.\n'
         }
     }else if (input['ekstra-dekoder'] && input['wifi-extender']){
         //bare wifi extender og ekstra tv-dekoder
-        resultEl.innerHTML += 'ekstra dekoder og wifi-extender.\n';
+        ret += 'ekstra dekoder og wifi-extender.\n';
     }else if (input['ekstra-dekoder']){
         //bare ekstra dekoder
-        resultEl.innerHTML += 'ekstra dekoder.\n'
+        ret += 'ekstra dekoder.\n'
     }else if (input['wifi-extender']){
         //bare wifi extender
-        resultEl.innerHTML += 'wifi-extender.\n'
+        ret += 'wifi-extender.\n'
     }
-    resultEl.innerHTML += '\n';
+    ret += '\n';
+    return ret;
 }
 
 /*
@@ -96,8 +112,10 @@ function disableInternettElements(){
 function updateResult(){
     
     //Prepairing the intro-text
-    input = getFormValues();
-    updateIntroText(input);
+    var input = getFormValues();
+    var introText = getIntroText(input);
+    
+    resultEl.innerHTML = introText;
     
     //Calculating kostnader
     var kostnader = getPriceTable(input);
