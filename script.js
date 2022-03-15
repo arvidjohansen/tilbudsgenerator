@@ -49,14 +49,14 @@ function getPriceTable(input){
         kostnader += 'Sum engangskostnader\t\t\tkr ' + totalEngangskost + ',-\n';
         var rabattEngangskostKr = (totalEngangskost * (input['rabatt-engangskost']/100)).toFixed(2).replace('.',',');
         kostnader += '   Rabatt (' + input['rabatt-engangskost'] + '%)\t\t\t      - kr ' + rabattEngangskostKr +'\n';
-        var totalEngangskostEtterRabatt = totalEngangskost - parseFloat(rabattEngangskostKr);
+        var totalEngangskostEtterRabatt = (totalEngangskost - parseFloat(rabattEngangskostKr.replace(',','.'))).toFixed(2).replace('.',',');;
         kostnader += 'Total engangkostnad\t\t\tkr '+ totalEngangskostEtterRabatt + '\n\n';
     }
     if (totalMånedlig > 0){
         kostnader += 'Sum månedlige kostnader\t\kr ' + totalMånedlig + ',-\n';
         var rabattMånedligKr = (totalMånedlig * (input['rabatt-månedlig']/100)).toFixed(2).replace('.',',');
         kostnader += '   Rabatt (' + input['rabatt-månedlig'] + '%)\t      - kr ' + rabattMånedligKr +'\n';
-        var totalMånedligEtterRabatt = totalMånedlig - parseFloat(rabattMånedligKr);
+        var totalMånedligEtterRabatt = (totalMånedlig - parseFloat(rabattMånedligKr.replace(',','.'))).toFixed(2).replace('.',',');
         kostnader += 'Total pris pr måned\tkr '+ totalMånedligEtterRabatt + '\n';
     }
     return kostnader
